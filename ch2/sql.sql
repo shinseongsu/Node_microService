@@ -24,3 +24,4 @@ create table if not exists purchases (
     data datetime not null default current_timestamp,
     primary key(id)
 ) engine=InnoDB default charset=utf8; 
+
