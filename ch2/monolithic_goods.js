@@ -6,21 +6,15 @@ const conn = {
     database: 'monolithic'
 };
 
-exports.onRequest = function(res, method, pathname, params, cb) {
+exports.onRequest = function (res, method, pathname, params, cb) {
 
-    switch(method) {
+    switch (method) {
         case "POST":
-            return register(method, pathname, params, (response) => {
-                process.nextTick(cb, res, response);
-            });
+            return register(method, pathname, params, (response) => { process.nextTick(cb, res, response); });
         case "GET":
-            return inquiry(method, pathname, params, (response) => {
-                process.nextTick(cb, res, response);
-            });
+            return inquiry(method, pathname, params, (response) => { process.nextTick(cb, res, response); });
         case "DELETE":
-            return unregister(method, pathname, params, (response) => {
-                process.nextTick(cb, res, response);
-            });
+            return unregister(method, pathname, params, (response) => { process.nextTick(cb, res, response); });
         default:
             return process.nextTick(cb, res, null);
     }

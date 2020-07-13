@@ -45,6 +45,34 @@ function register(method, pathname, params, cb) {
     }
 }
 
+function inquiry(method, pathname, params, cb) {   
+    var response = {
+        key: params.key,
+        errorcode: 0,
+        errormessage: "success"
+    };
+
+    if (params.username == null || params.password == null) {
+
+        response.errorcode = 1;
+        response.errormessage = "Invalid Parameters";
+        cb(response);
+    } else {
+        var connection = mysql.createConnection(conn);
+        connection.connect();
+        connection.query("select id from  members where username = '" + params.username + "' and password = password('" + params.password +"');", (error, results, fields) => {
+            if (error || results.length == 0) {
+                response.errorcode = 1;
+                response.errormessage = error ? error : "invalid password";
+            } else {
+                response.userid = results[0].id;
+            }
+            cb(response);
+        });
+        connection.end();
+    }     
+}
+
 function unregister(method, pathname, params, cb) {
     var response = {
         key: params.key,
