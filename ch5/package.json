@@ -10,7 +10,7 @@
   "author": "Seongsu",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "seneca": "^3.22.0",
     "seneca-web": "^2.2.1",
     "seneca-web-adapter-express": "^1.2.1"
